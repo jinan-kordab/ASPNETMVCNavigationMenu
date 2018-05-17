@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NavMenuDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NavigationMenu">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkLevel" Type="int" Nullable="false" />
+          <Property Name="Linktype" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentLink" Type="bigint" Nullable="false" />
+          <Property Name="LinkOrder" Type="int" Nullable="false" />
+          <Property Name="LinkText" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HasChildren" Type="bit" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="NavMenuDBModelStoreContainer">
+          <EntitySet Name="NavigationMenu" EntityType="Self.NavigationMenu" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NavMenuDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NavigationMenu">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkLevel" Type="Int32" Nullable="false" />
+          <Property Name="Linktype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentLink" Type="Int64" Nullable="false" />
+          <Property Name="LinkOrder" Type="Int32" Nullable="false" />
+          <Property Name="LinkText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HasChildren" Type="Boolean" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="NavMenuDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NavigationMenus" EntityType="Self.NavigationMenu" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NavMenuDBModelStoreContainer" CdmEntityContainer="NavMenuDBEntities">
+          <EntitySetMapping Name="NavigationMenus">
+            <EntityTypeMapping TypeName="NavMenuDBModel.NavigationMenu">
+              <MappingFragment StoreEntitySet="NavigationMenu">
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+                <ScalarProperty Name="LinkLevel" ColumnName="LinkLevel" />
+                <ScalarProperty Name="Linktype" ColumnName="Linktype" />
+                <ScalarProperty Name="ParentLink" ColumnName="ParentLink" />
+                <ScalarProperty Name="LinkOrder" ColumnName="LinkOrder" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="HasChildren" ColumnName="HasChildren" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

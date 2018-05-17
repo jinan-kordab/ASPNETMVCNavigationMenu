@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - A Nice ASP.NET MVC Navigation Menu</title>
+    @*our added scripts section*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="~/css/metro.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.17/css/metro-responsive.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.17/js/metro.js"></script>
+    @*our added scripts section*@
+
+    <script type="text/javascript">
+        var globalLinkGridNoMargin = 0;
+        var gridnomarginlinnkcounter = 0;
+        var inlinelinklistcounter = 0;
+        var globalInlineLinkList = 0;
+   
+        function AddGridNoMargin(t) {
+            globalLinkGridNoMargin = globalLinkGridNoMargin + 1;
+            var li = "<li class=\"active-container\"><a href=\"#\" class=\"dropdown-toggle active-toggle\"><input type=\"text\" id=\"grid-no-margin-first-row-text" + globalLinkGridNoMargin + "\" name=\"grid-no-margin-first-row-text" + globalLinkGridNoMargin + "\" style=\"border:0px;background-color:bisque;\"></a><div class=\"m-menu-container\" data-role=\"dropdown\" data-no-close=\"true\" style=\"display: block;\"><div class=\"grid no-margin\"><div class=\"row cells4\"><div class=\"cell\"><ul class=\"unstyled-list\" id=\"GridNoMarginList" + globalLinkGridNoMargin + "\" name=\"GridNoMarginList" + globalLinkGridNoMargin + "\"><li><h3 class=\"text-shadow\"><input type=\"text\" id=\"grid-no-margin-second-row-header-title" + globalLinkGridNoMargin + "\" name=\"grid-no-margin-second-row-header-title" + globalLinkGridNoMargin + "\" style=\"border:0px;background-color:bisque\"></h3></li><li id=\"linkaddoptions\"><span style=\"font-family:Arial;font-size:30px;color:deepskyblue;\"><a href=\"#\" style=\"text-decoration:none\" onclick=\"AddLinkToGridNoMargin(" + globalLinkGridNoMargin + ");\">+</a></span><span style=\"font-family:Arial;font-size:30px;color:deepskyblue;\"><a href=\"#\" style=\"text-decoration:none\" onclick=\"RemoveLinkFromGridNoMargin(this);\">-</a></span></li></ul></div></div></div></div></li>";
+
+            $("#mainMenu").append(li);
+          
+        }
+
+        function RemoveGridNoMargin(t) {
+            $('#mainMenu .active-container').last().remove();
+        }
+
+
+        function AddLinkToGridNoMargin(t) {
+            var li = "<li>Text:<input type=\"text\" id=\"linkGridNoMarginTEXT" + gridnomarginlinnkcounter + "\" name=\"linkGridNoMarginTEXT" + gridnomarginlinnkcounter + "\"><li>Link:<input type=\"text\" id=\"linkGridNoMarginLINK" + gridnomarginlinnkcounter + "\" name=\"linkGridNoMarginLINK" + gridnomarginlinnkcounter + "\"></li></li>";
+            $("#GridNoMarginList" + globalLinkGridNoMargin + "").append(li);
+            gridnomarginlinnkcounter = gridnomarginlinnkcounter + 1;
+        }
+        
+        function RemoveLinkFromGridNoMargin(t) {
+            if ($("#GridNoMarginList" + globalLinkGridNoMargin + " li").last().attr("id") != "linkaddoptions") {
+                $("#GridNoMarginList" + globalLinkGridNoMargin + " li").last().remove();
+            }
+        }
+
+
+        function AddInLineList(t) {
+            globalInlineLinkList = globalInlineLinkList + 1;
+            var li = "<li class=\"inlinelist\"><a href=\"#\" class=\"dropdown-toggle\"><input type=\"text\" id=\"inline-list-first-row-text" + globalInlineLinkList + "\" name=\"inline-list-first-row-text" + globalInlineLinkList + "\" style=\"border:0px;background-color:bisque;\"></a><div class=\"m-menu-container\" data-role=\"dropdown\" data-no-close=\"true\"><div class=\"inline-list\"><ul class=\"unstyled-list\" id=\"InlineListList" + globalInlineLinkList + "\"><li id=\"linkaddoptions\"><span style=\"font-family:Arial;font-size:30px;color:deepskyblue;\"><a href=\"#\" style=\"text-decoration:none\" onclick=\"AddLinkInlineList(" + globalInlineLinkList + ");\">+</a></span><span style=\"font-family:Arial;font-size:30px;color:deepskyblue;\"><a href=\"#\" style=\"text-decoration:none\" onclick=\"RemoveLinkInlineList(this);\">-</a></span></li></ul></div></div></li>";
+            $("#mainMenu").append(li);
+        }
+        function RemoveInlineList(t) {
+            $('#mainMenu .inlinelist').last().remove();
+        }
+
+
+        function AddLinkInlineList(t) {
+            //alert(globalInlineLinkList);
+            var li = "<li>Text:<input type=\"text\" id=\"linkInlineSecondRowListTEXT" + inlinelinklistcounter + "\" name=\"linkInlineSecondRowListTEXT" + inlinelinklistcounter + "\">Link:<input type=\"text\" id=\"linkInlineSecondRowListLINK" + inlinelinklistcounter + "\" name=\"linkInlineSecondRowListLINK" + inlinelinklistcounter + "\"></li>";
+            $("#InlineListList" + globalInlineLinkList + "").append(li);
+            inlinelinklistcounter = inlinelinklistcounter + 1;
+        }
+
+        function RemoveLinkInlineList(t) {
+            //alert(globalLinkGridNoMargin);
+            
+            if ($("#InlineListList" + globalInlineLinkList + " li").last().attr("id") != "linkaddoptions") {
+                $("#InlineListList" + globalInlineLinkList + " li").last().remove();
+            }
+        }
+
+        function SaveEditedForm(t) {
+            document.getElementById("frmEditMenu").submit();
+        }
+    </script>
+</head>
+<body class="metro">  
+        @RenderBody()
+
+    <div class="grid flex-grid">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="btnAddGridNoMargin" class="heading bg-lightBlue fg-white">Grid No Margin<span class="icon-plus"></span></label>
+                <span style="font-family:Arial;font-size:24px;color:deepskyblue;"><a id="btnAddGridNoMargin" href="#" class="button button-shadow cycle-button" style="text-decoration:none;font-size:20px" onclick="AddGridNoMargin(this);">+</a></span>
+                <span style="font-family:Arial;font-size:24px;color:deepskyblue;"><a href="#" class="button button-shadow cycle-button" style="text-decoration:none;font-size:20px" onclick="RemoveGridNoMargin(this);">-</a></span>
+
+            </div>
+            <div class="col-lg-4">
+                <label for="btnAddInlineList" class="heading bg-lightBlue fg-white">Inline List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="icon-plus"></span></label>
+                <span style="font-family:Arial;font-size:24px;color:deepskyblue;"><a href="#" class="button button-shadow cycle-button" style="text-decoration:none;font-size:20px" onclick="AddInLineList(this);">+</a></span>
+                <span style="font-family:Arial;font-size:24px;color:deepskyblue;"><a href="#" class="button button-shadow cycle-button" style="text-decoration:none;font-size:20px" onclick="RemoveInlineList(this);">-</a></span>
+            </div>
+            <div class="col-lg-4">
+                <a href="#" class="button button-shadow" style="text-decoration:none;font-size:20px" onclick="SaveEditedForm(this);">SAVE</a>
+            </div>
+        </div>
+      
+    </div>
+    &nbsp;
+   <br />
+
+    <form id="frmEditMenu" name="frmEditMenu" action="/Home/AddNewMenu" method="post">  
+        <ul class="m-menu" id="mainMenu">
+         
+        </ul>
+    </form>
+
+
+    <ul class="m-menu">
+
+        @foreach (var menuItem in Model.menus)
+            {
+                if (menuItem.HasChildren && menuItem.ParentLink == 0)
+                {
+                <li>
+                    <a href="#" class="dropdown-toggle">@menuItem.LinkText</a>
+                    <div class="m-menu-container" data-role="dropdown" data-no-close="true">
+                        @if (menuItem.Class.Contains("grid no-margin"))
+                    {
+                        var linkClass = menuItem.Class.ToString().Split('|');
+
+                            <div class="@(Html.Raw(linkClass[1].ToString()))">
+                                <div class="row cells@(Html.Raw(linkClass[0].ToString()))">
+
+                                    @for (int cell = 0; cell <= Convert.ToInt32(linkClass[0].ToString()); cell++)
+                                    {
+                                        // for each cell
+                                        <div class="cell">
+                                            <ul class="unstyled-list">
+
+                                                @foreach (var menu in Model.menus)
+                                                {
+                                                    if (menu.ParentLink == menuItem.LinkId)
+                                                    {
+
+
+                                                        <li>
+                                                            @if (menu.Class == "text-shadow" && menu.LinkOrder == cell)
+                                                            {
+                                                                <h3 class="text-shadow">@menu.LinkText</h3>
+                                                            }
+                                                            else if (menu.LinkOrder == cell)
+                                                            {
+                                                                <a class="fg-white" onclick="$('#sv').val('@menu.Linktype'); $(this).closest('form').submit();">@menu.LinkText</a>
+                                                            }
+
+                                                        </li>
+
+
+                                                    }
+                                                }
+
+                                            </ul>
+
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        }
+                        else if (menuItem.Class.Contains("inline-list"))
+                        {
+                            var linkClass = menuItem.Class.ToString().Split('|');
+                            <div class="@(Html.Raw(linkClass[1].ToString()))">
+
+
+                                <ul class="unstyled-list">
+                                    @for (int cell = 0; cell <= Convert.ToInt32(linkClass[0].ToString()); cell++)
+                                    {
+
+                                        foreach (var menu in Model.menus)
+                                        {
+                                            if (menu.ParentLink == menuItem.LinkId)
+                                            {
+                                                <li>
+
+                                                    @if (menu.LinkOrder == cell)
+                                                    {
+
+                                                        @*<a class="fg-white" href="@menu.Linktype">@menu.LinkText</a>*@
+                                                        <a class="fg-white" onclick="$('#sv').val('@menu.Linktype'); $(this).closest('form').submit();">@menu.LinkText</a>
+                                                        }
+
+                                                </li>
+
+
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </div>
+
+                        }
+
+                    </div>
+                </li>
+            }
+            else if (menuItem.ParentLink == 0)
+            {
+                <li><a href="#">@menuItem.LinkText</a></li>
+            }
+        }
+    </ul>
+
+</body>
